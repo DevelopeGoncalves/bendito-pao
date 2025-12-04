@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bendito Pão - Padaria Artesanal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #A0673A;
+            --secondary-color: #C8834E;
+            --accent-color: #E8A665;
+            --orange: #E89148;
+            --light-bg: #FFF9F3;
+            --cream: #FFF5EB;
+            --dark-text: #4A3527;
+            --light-text: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        header {
+            background: var(--light-text);
+            color: var(--dark-text);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(160, 103, 58, 0.15);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--primary-color);
+        }
+
+        .logo-img i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--orange);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(160, 103, 58, 0.95), rgba(232, 161, 101, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23FFF5EB" width="1200" height="600"/><circle cx="200" cy="150" r="100" fill="%23E89148" opacity="0.2"/><circle cx="800" cy="400" r="150" fill="%23C8834E" opacity="0.2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+            margin-top: 100px;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+            color: var(--cream);
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: var(--orange);
+            color: var(--light-text);
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            animation: fadeIn 1.5s ease;
+            box-shadow: 0 5px 20px rgba(232, 145, 72, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background: var(--light-text);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(232, 145, 72, 0.5);
+        }
+
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 4rem;
+            font-style: italic;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--orange), var(--accent-color));
+            margin: 1.5rem auto;
+            border-radius: 2px;
+        }
+
+        .about {
+            background: var(--light-bg);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-highlight {
+            background: var(--cream);
+            padding: 2rem;
+            border-left: 4px solid var(--orange);
+            margin: 2rem 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, var(--primary-color), var(--orange));
+            height: 500px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: var(--light-text);
+            box-shadow: 0 15px 40px rgba(160, 103, 58, 0.3);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: var(--light-text);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(160, 103, 58, 0.15);
+            transition: all 0.4s;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(160, 103, 58, 0.25);
+            border-color: var(--orange);
+        }
+
+        .product-image {
+            height: 280px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--light-text);
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--orange);
+            font-family: 'Playfair Display', serif;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .order-btn {
+            background: var(--primary-color);
+            color: var(--light-text);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .order-btn:hover {
+            background: var(--orange);
+            transform: scale(1.05);
+        }
+
+        .add-to-cart-btn {
+            background: var(--orange);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--primary-color);
+        }
+
+        .gallery {
+            background: var(--cream);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(160, 103, 58, 0.2);
+            transition: transform 0.4s;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .contact {
+            background: linear-gradient(135deg, var(--primary-color), var(--orange));
+            color: var(--light-text);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            font-size: 1.1rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(10px);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--cream);
+            min-width: 40px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            background: rgba(255,255,255,0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1.2rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            background: rgba(255,255,255,0.9);
+            transition: all 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--cream);
+            background: var(--light-text);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 60px;
+            height: 60px;
+            background: var(--cream);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-links a:hover {
+            background: var(--light-text);
+            transform: translateY(-8px) rotate(5deg);
+        }
+
+        .cart-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--orange);
+            color: var(--light-text);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(232, 145, 72, 0.5);
+            transition: all 0.3s;
+            z-index: 999;
+            border: none;
+        }
+
+        .cart-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(232, 145, 72, 0.6);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 3px solid white;
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            padding: 20px;
+        }
+
+        .cart-modal.active {
+            display: flex;
+        }
+
+        .cart-content {
+            background: white;
+            border-radius: 25px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+        }
+
+        .cart-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--orange));
+            color: white;
+            padding: 2rem;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .cart-header h2 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .close-cart:hover {
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            padding: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border-bottom: 2px solid var(--light-bg);
+            align-items: center;
+        }
+
+        .cart-item-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .cart-item-price {
+            color: var(--orange);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--light-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .quantity-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: var(--orange);
+            transform: scale(1.1);
+        }
+
+        .quantity-display {
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-item {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .remove-item:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem;
+            color: #999;
+        }
+
+        .cart-empty i {
+            font-size: 5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .cart-footer {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 0 0 25px 25px;
+            position: sticky;
+            bottom: 0;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .cart-total span:first-child {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .cart-total span:last-child {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--orange);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--orange));
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(232, 145, 72, 0.4);
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        footer {
+            background: var(--dark-text);
+            color: var(--cream);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        footer i {
+            color: var(--orange);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(400px); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 100px;
+                flex-direction: column;
+                background: var(--light-text);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cart-item-controls {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <div class="logo-img">
+                    <i class="fas fa-wheat-awn"></i>
+                </div>
+                <div>
+                    <div class="logo-text">Bendito Pão</div>
+                    <div class="logo-subtitle">Padaria Artesanal</div>
+                </div>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#produtos">Cardápio</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Bendito Pão</h1>
+            <p class="subtitle">☕🍞 Seu especialista em café da manhã e da tarde 🥐🤎<br>Transforme seus momentos com nossas delícias!</p>
+            <a href="#produtos" class="cta-button">Faça Seu Pedido</a>
+        </div>
+    </section>
+
+    <section class="about" id="sobre">
+        <h2 class="section-title">Nossa História</h2>
+        <p class="section-subtitle">Tradição e qualidade em cada pão</p>
+        <div class="about-content">
+            <div class="about-text">
+                <p>No <strong>Bendito Pão</strong>, acreditamos que cada pão conta uma história. Nossa padaria nasceu do sonho de trazer o verdadeiro sabor da tradição para sua mesa, combinando técnicas artesanais com ingredientes selecionados.</p>
+                
+                <div class="about-highlight">
+                    ☕🍞 Somos especialistas em café da manhã e da tarde! Transforme seus momentos com nossas delícias artesanais.
+                </div>
+                
+                <p>Utilizamos fermentação natural, respeitando o tempo necessário para que cada pão desenvolva todo seu sabor e textura únicos. Do amassamento ao forno, cada etapa é feita com atenção aos detalhes.</p>
+                
+                <p>Mais do que uma padaria, somos uma família que compartilha o amor pela arte da panificação e o compromisso de oferecer produtos de excelência.</p>
+            </div>
+            <div class="about-image">
+                <i class="fas fa-bread-slice"></i>
+            </div>
+        </div>
+    </section>
+
+    <section id="produtos">
+        <h2 class="section-title">Nosso Cardápio</h2>
+        <p class="section-subtitle">Feitos frescos todos os dias - Faça seu pedido!</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <i class="fas fa-bread-slice"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Pão Francês</h3>
+                    <p>Crocante por fora, macio por dentro. O clássico que não pode faltar.</p>
+                    <span class="product-price">R$ 12,00/kg</span>
+                    <button class="order-btn add-to-cart-btn" onclick="addToCart('Pão Francês', 12.00, 'fa-bread-slice', 'kg')">
+                        <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Pão Integral</h3>
+                    <p>Saudável e saboroso, feito com grãos integrais selecionados.</p>
+                    <span class="product-price">R$ 15,00/kg</span>
+                    <button class="order-btn add-to-cart-btn" onclick="addToCart('Pão Integral', 15.00, 'fa-seedling', 'kg')">
+                        <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <i class="fas fa-cake-candles"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Doces Artesanais</h3>
+                    <p>Bolos, sonhos, rosquinhas e muito mais para adoçar seu dia.</p>
+                    <span class="product-price">R$ 3,00/unidade</span>
+                    <button class="order-btn add-to-cart-btn" onclick="addToCart('Doces Artesanais', 3.00, 'fa-cake-candles', 'un')">
+                        <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <i class="fas fa-cheese"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Salgados</h3>
+                    <p>Coxinhas, empadas e folhados para o seu lanche perfeito.</p>
+                    <span class="product-price">R$ 5,00/unidade</span>
+                    <button class="order-btn add-to-cart-btn" onclick="addToCart('Salgados', 5.00, 'fa-cheese', 'un')">
+                        <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <i class="fas fa-croissant"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Croissants</h3>
+                    <p>Delicados, folhados e irresistíveis para o café da manhã.</p>
+                    <span class="product-price">R$ 8,00/unidade</span>
+                    <button class="order-btn add-to-cart-btn" onclick="addToCart('Croissants', 8.00, 'fa-croissant', 'un')">
+                        <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <i class="fas fa-mug-hot"></i>
+                </div>
+                <div class="product-info">
+                    <h3>Cafés Especiais</h3>
+                    <p>Cafés selecionados para acompanhar nossos pães.</p>
+                    <span class="product-price">R$ 5,00/unidade</span>
+                    <button class="order-btn add-to-cart-btn" onclick="addToCart('Cafés Especiais', 5.00, 'fa-mug-hot', 'un')">
+                        <i class="fas fa-cart-plus"></i> Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="galeria">
+        <h2 class="section-title">Galeria</h2>
+        <p class="section-subtitle">Conheça nossos produtos de perto</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="img/produto1.jpg" alt="Pães artesanais">
+            </div>
+            <div class="gallery-item">
+                <img src="img/produto2.jpg" alt="Doces e bolos">
+            </div>
+            <div class="gallery-item">
+                <img src="img/produto3.jpg" alt="Salgados">
+            </div>
+            <div class="gallery-item">
+                <img src="img/produto4.jpg" alt="Croissants">
+            </div>
+            <div class="gallery-item">
+                <img src="img/produto5.jpg" alt="Cafés especiais">
+            </div>
+            <div class="gallery-item">
+                <img src="img/produto6.jpg" alt="Variedades">
+            </div>
+            <div class="gallery-item">
+                <img src="img/produto7.jpg" alt="Variedades">
+            </div>
+            <div class="gallery-item">
+                <img src="img/produto8.jpg" alt="Variedades">
+            </div>
+            <div class="gallery-item">
+                <img src="img/produto9.jpg" alt="Variedades">
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contato">
+        <h2 class="section-title">Entre em Contato</h2>
+        <p class="section-subtitle">Estamos prontos para atendê-lo</p>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Endereço</strong><br>
+                        Av. Lourival Nunes, 346<br>
+                        Serra, ES - CEP: 29162-748
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>WhatsApp</strong><br>
+                        (27) 99906-4068
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>E-mail</strong><br>
+                        contato@benditopao.com.br
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Horário</strong><br>
+                        Seg-Sex: 6h-20h<br>
+                        Sáb-Dom: 6h-14h
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/benditop4o/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5527999064068" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <input type="text" placeholder="Seu Nome" required>
+                <input type="email" placeholder="Seu E-mail" required>
+                <input type="tel" placeholder="Seu Telefone" required>
+                <textarea placeholder="Sua Mensagem" required></textarea>
+                <button type="submit" class="cta-button">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <button class="cart-button" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2><i class="fas fa-shopping-cart"></i> Meu Carrinho</h2>
+                <button class="close-cart" onclick="toggleCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <div class="cart-empty">
+                    <i class="fas fa-shopping-basket"></i>
+                    <p>Seu carrinho está vazio</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Adicione produtos deliciosos!</p>
+                </div>
+            </div>
+            <div class="cart-footer" id="cartFooter" style="display: none;">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">R$ 0,00</span>
+                </div>
+                <button class="checkout-btn" onclick="finalizarPedido()">
+                    <i class="fab fa-whatsapp"></i> Finalizar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Bendito Pão - Padaria Artesanal</p>
+        <p>Av. Lourival Nunes, 346 - Serra, ES</p>
+        <p style="margin-top: 1rem;">Desenvolvido com <i class="fas fa-heart"></i> para levar pão fresco até você</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        let cart = [];
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 100;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        function addToCart(name, price, icon, unit) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    icon: icon,
+                    unit: unit,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showNotification(`${name} adicionado ao carrinho!`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                removeFromCart(index);
+            } else {
+                updateCart();
+            }
+        }
+
+        function updateCart() {
+            const cartBadge = document.getElementById('cartBadge');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const cartFooter = document.getElementById('cartFooter');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartBadge.textContent = totalItems;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>Seu carrinho está vazio</p>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Adicione produtos deliciosos!</p>
+                    </div>
+                `;
+                cartFooter.style.display = 'none';
+            } else {
+                cartItems.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <div class="cart-item-icon">
+                            <i class="fas ${item.icon}"></i>
+                        </div>
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <div class="cart-item-price">R$ ${item.price.toFixed(2)}/${item.unit}</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="quantity-display">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <button class="remove-item" onclick="removeFromCart(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotal.textContent = `R$ ${total.toFixed(2)}`;
+                cartFooter.style.display = 'block';
+            }
+        }
+
+        function toggleCart() {
+            const cartModal = document.getElementById('cartModal');
+            cartModal.classList.toggle('active');
+        }
+
+        function showNotification(message) {
+            const existingNotif = document.querySelector('.notification');
+            if (existingNotif) {
+                existingNotif.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i> ${message}
+            `;
+            notification.style.cssText = `
+                position: fixed;
+                top: 120px;
+                right: 30px;
+                background: linear-gradient(135deg, #27ae60, #2ecc71);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 15px;
+                box-shadow: 0 5px 20px rgba(39, 174, 96, 0.4);
+                z-index: 1002;
+                animation: slideInRight 0.4s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                font-weight: 500;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.4s ease';
+                setTimeout(() => notification.remove(), 400);
+            }, 2500);
+        }
+
+        function finalizarPedido() {
+            if (cart.length === 0) return;
+            
+            const nome = prompt('Digite seu nome:');
+            if (!nome) return;
+            
+            const endereco = prompt('Digite seu endereço completo para entrega:');
+            if (!endereco) return;
+            
+            const observacoes = prompt('Observações do pedido (opcional):') || 'Nenhuma';
+            
+            let mensagem = `*NOVO PEDIDO - Bendito Pão*%0A%0A`;
+            mensagem += `👤 *Nome:* ${encodeURIComponent(nome)}%0A`;
+            mensagem += `📍 *Endereço:* ${encodeURIComponent(endereco)}%0A%0A`;
+            mensagem += `*ITENS DO PEDIDO:*%0A`;
+            
+            cart.forEach(item => {
+                const subtotal = item.price * item.quantity;
+                mensagem += `%0A🍞 ${item.quantity}${item.unit} - ${encodeURIComponent(item.name)}%0A`;
+                mensagem += `   💰 R$ ${item.price.toFixed(2)}/${item.unit} = R$ ${subtotal.toFixed(2)}%0A`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            mensagem += `%0A━━━━━━━━━━━━━━━━%0A`;
+            mensagem += `*TOTAL: R$ ${total.toFixed(2)}*%0A`;
+            mensagem += `━━━━━━━━━━━━━━━━%0A`;
+            mensagem += `%0A📝 *Observações:* ${encodeURIComponent(observacoes)}`;
+            
+            window.open(`https://wa.me/5527999064068?text=${mensagem}`, '_blank');
+            
+            cart = [];
+            updateCart();
+            toggleCart();
+            showNotification('Pedido enviado! Aguarde nosso contato.');
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nome = e.target[0].value;
+            const email = e.target[1].value;
+            const telefone = e.target[2].value;
+            const msg = e.target[3].value;
+            
+            const whatsappMsg = `*CONTATO SITE - Bendito Pão*%0A%0A` +
+                              `👤 *Nome:* ${encodeURIComponent(nome)}%0A` +
+                              `📧 *E-mail:* ${encodeURIComponent(email)}%0A` +
+                              `📱 *Telefone:* ${encodeURIComponent(telefone)}%0A` +
+                              `💬 *Mensagem:* ${encodeURIComponent(msg)}`;
+            
+            window.open(`https://wa.me/5527999064068?text=${whatsappMsg}`, '_blank');
+            e.target.reset();
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        document.getElementById('cartModal').addEventListener('click', (e) => {
+            if (e.target.id === 'cartModal') {
+                toggleCart();
+            }
+        });
+    </script>
+</body>
+</html>
